@@ -46,9 +46,9 @@ universe_tickers = pd.read_csv('./datasets/{}.csv'.format(universe), index_col=0
 date_interval_st = st.session_state['date_filter']
 
 if date_interval_st == 'Past 1 year':
-    date_interval = 350
-if date_interval_st == 'Past 1 Month':
-    date_interval = 30
+    date_interval = 360
+if date_interval_st == 'Past Half-Year':
+    date_interval = 180
 if date_interval_st == 'Past 3 Months':
     date_interval = 90
 if date_interval_st == 'Full':
@@ -100,7 +100,7 @@ st.markdown('The dashboard offers a near real-time, comprehensive visual overvie
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    date_interval = st.selectbox('Pick the Date Range', ('Past 1 year', 'Past 1 Month', 'Past 3 Months', 'Full'), key='date_filter')
+    date_interval = st.selectbox('Pick the Date Range', ('Past 1 year', 'Past Half-Year', 'Past 3 Months', 'Full'), key='date_filter')
 with col2:
     universe_var = st.selectbox('Select from NIFTY_ ', ('NIFTY_50', 'NIFTY_100', 'NIFTY_200', 'NIFTY_500'), key='universe_filter')
 with col3:
