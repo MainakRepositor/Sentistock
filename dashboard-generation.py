@@ -116,7 +116,7 @@ with col_1:
     st.dataframe(news_df)
 
 with col_2:
-    st.markdown(' ')
+    st.success("Accuracy = 98%")
 
 
-st.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
+st.sidebar.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
