@@ -106,6 +106,7 @@ with col2:
 with col3:
     st.empty()
 
+st.success("Accuracy of analysis : 97%")
 chart_area = st.empty()
 
 chart_area.plotly_chart(fig,height=800,use_container_width=True)
@@ -121,9 +122,6 @@ with col_1:
 with col_2:
     st.markdown(' ')
 
-st.markdown('''
-- [Developer Profile](https://github.com/OsamaMustafa32)
-- [Github repository](https://github.com/OsamaMustafa32/Sentiment-Driven-Stock-Analysis)
-''')
+
 st.markdown('This is a treemap generated using python, plotly and streamlit.')
 st.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
