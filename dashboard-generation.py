@@ -98,13 +98,10 @@ st.markdown('The dashboard offers a near real-time, comprehensive visual overvie
 
 # Update filters
 
-col1, col2, col3 = st.columns(3)
-with col1:
-    date_interval = st.selectbox('Pick the Date Range', ('Past 1 year', 'Past Half-Year', 'Past 3 Months', 'Full'), key='date_filter')
-with col2:
-    universe_var = st.selectbox('Select from NIFTY_ ', ('NIFTY_50', 'NIFTY_100', 'NIFTY_200', 'NIFTY_500'), key='universe_filter')
-with col3:
-    st.empty()
+
+date_interval = st.sidebar.selectbox('Pick the Date Range', ('Past 1 year', 'Past Half-Year', 'Past 3 Months', 'Full'), key='date_filter')
+universe_var = st.sidebar.selectbox('Select from NIFTY_ ', ('NIFTY_50', 'NIFTY_100', 'NIFTY_200', 'NIFTY_500'), key='universe_filter')
+
 
 chart_area = st.empty()
 
@@ -121,9 +118,5 @@ with col_1:
 with col_2:
     st.markdown(' ')
 
-st.markdown('''
-- [Developer Profile](https://github.com/OsamaMustafa32)
-- [Github repository](https://github.com/OsamaMustafa32/Sentiment-Driven-Stock-Analysis)
-''')
-st.markdown('This is a treemap generated using python, plotly and streamlit.')
+
 st.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
