@@ -9,7 +9,7 @@ import streamlit as st
 
 #initialize session state
 if 'date_filter' not in st.session_state:
-    st.session_state['date_filter'] = 'Past 3 Month'
+    st.session_state['date_filter'] = 'Past 1 Month'
 if 'universe_filter' not in st.session_state:
     st.session_state['universe_filter'] = 'NIFTY_100'
 if 'newsbox' not in st.session_state:
@@ -45,12 +45,12 @@ universe_tickers = pd.read_csv('./datasets/{}.csv'.format(universe), index_col=0
 ## Filter Articles by date
 date_interval_st = st.session_state['date_filter']
 
-if date_interval_st == 'Past 1 year':
-    date_interval = 360
-if date_interval_st == 'Past Half-Year':
-    date_interval = 180
-if date_interval_st == 'Past 3 Months':
-    date_interval = 90
+if date_interval_st == 'Past 7 days':
+    date_interval = 7
+if date_interval_st == 'Past 1 Month':
+    date_interval = 30
+if date_interval_st == 'Past 2 Months':
+    date_interval = 60
 if date_interval_st == 'Full':
     date_interval = 1000
 
@@ -98,8 +98,7 @@ st.markdown('The dashboard offers a near real-time, comprehensive visual overvie
 
 # Update filters
 
-
-date_interval = st.sidebar.selectbox('Pick the Date Range', ('Past 1 year', 'Past Half-Year', 'Past 3 Months', 'Full'), key='date_filter')
+date_interval = st.sidebar.selectbox('Pick the Date Range', ('Past 7 days', 'Past 1 Month', 'Past 2 Months', 'Full'), key='date_filter')
 universe_var = st.sidebar.selectbox('Select from NIFTY_ ', ('NIFTY_50', 'NIFTY_100', 'NIFTY_200', 'NIFTY_500'), key='universe_filter')
 
 
@@ -109,10 +108,12 @@ chart_area.plotly_chart(fig,height=800,use_container_width=True)
 
 st.markdown('The chart above depicts the real time sentiment of Stocks and Industries in the Nifty 500 Universe.')
 
+
 st.selectbox('Type the Symbol name to get associated news: ', final_df['Symbol'], key='newsbox')
 st.dataframe(news_df)
 
-st.success("Accuracy = 98%")
 
 
-st.sidebar.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
+
+st.markdown('This is a treemap generated using python, plotly and streamlit.')
+st.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
