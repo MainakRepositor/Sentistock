@@ -9,7 +9,7 @@ import streamlit as st
 
 #initialize session state
 if 'date_filter' not in st.session_state:
-    st.session_state['date_filter'] = '1 Quarter'
+    st.session_state['date_filter'] = 'Past 1 Month'
 if 'universe_filter' not in st.session_state:
     st.session_state['universe_filter'] = 'NIFTY_100'
 if 'newsbox' not in st.session_state:
@@ -45,11 +45,11 @@ universe_tickers = pd.read_csv('./datasets/{}.csv'.format(universe), index_col=0
 ## Filter Articles by date
 date_interval_st = st.session_state['date_filter']
 
-if date_interval_st == '1 Quarter':
-    date_interval = 90
-if date_interval_st == '1 Year':
-    date_interval = 360
-if date_interval_st == '1 Months':
+if date_interval_st == 'Past 7 days':
+    date_interval = 7
+if date_interval_st == 'Past 1 Month':
+    date_interval = 30
+if date_interval_st == 'Past 2 Months':
     date_interval = 60
 if date_interval_st == 'Full':
     date_interval = 1000
@@ -100,12 +100,11 @@ st.markdown('The dashboard offers a near real-time, comprehensive visual overvie
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    date_interval = st.selectbox('Pick the Date Range', ('1 Quarter', '1 Year', '1 Months', 'Full'), key='date_filter')
+    date_interval = st.selectbox('Pick the Date Range', ('Past 7 days', 'Past 1 Month', 'Past 2 Months', 'Full'), key='date_filter')
 with col2:
     universe_var = st.selectbox('Select from NIFTY_ ', ('NIFTY_50', 'NIFTY_100', 'NIFTY_200', 'NIFTY_500'), key='universe_filter')
 with col3:
     st.empty()
-
 
 chart_area = st.empty()
 
@@ -122,7 +121,9 @@ with col_1:
 with col_2:
     st.markdown(' ')
 
-
+st.markdown('''
+- [Developer Profile](https://github.com/OsamaMustafa32)
+- [Github repository](https://github.com/OsamaMustafa32/Sentiment-Driven-Stock-Analysis)
+''')
 st.markdown('This is a treemap generated using python, plotly and streamlit.')
-st.success("Accuracy of analysis : 97%")
 st.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
