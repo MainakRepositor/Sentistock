@@ -109,14 +109,10 @@ chart_area.plotly_chart(fig,height=800,use_container_width=True)
 
 st.markdown('The chart above depicts the real time sentiment of Stocks and Industries in the Nifty 500 Universe.')
 
+st.selectbox('Type the Symbol name to get associated news: ', final_df['Symbol'], key='newsbox')
+st.dataframe(news_df)
 
-col_1, col_2 = st.columns([3,2])
-with col_1:
-    st.selectbox('Type the Symbol name to get associated news: ', final_df['Symbol'], key='newsbox')
-    st.dataframe(news_df)
-
-with col_2:
-    st.success("Accuracy = 98%")
+st.success("Accuracy = 98%")
 
 
 st.sidebar.info('''Every 30 minutes, the dashboard is refreshed with the most current sentiment analysis outcomes based on the newly scraped news headlines from the Ticker-Finology website.''')
